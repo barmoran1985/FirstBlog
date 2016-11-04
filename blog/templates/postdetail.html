@@ -15,12 +15,15 @@
             <h3>{{ post.title }}</h3>
             <div class="row">
                 <div class="col-xs-9">
-                    <p>{{ post.content }}</p>
+                    {% if post.image %}
+                        <img src="/media/{{ post.image }}">
+                    {% endif %}
+                    <p>{{ post.content|linebreaks }}</p>
                     <p>
                         <button class="btn btn-default" onclick="location.href='/blog'">Back To Blog</button>
                     </p>
                     <p>{{ post.published_date }} | Views {{ post.views }}</p>
-                    \{% load disqus_tags %}
+                    {% load disqus_tags %}
                     {% set_disqus_title post.title %}
                     {% disqus_show_comments %}
                 </div>
@@ -32,3 +35,4 @@
     </div>
 
 {% endblock content %}
+

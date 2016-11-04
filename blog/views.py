@@ -22,3 +22,13 @@ def post_details(request, id):
     post.save()
     return render(request, "postdetail.html", {'post': post})
 
+
+def top_posts(request):
+    """
+    :param request:
+    :return:
+    """
+    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-views')[:5]
+    return render
+
+
